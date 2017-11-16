@@ -7,6 +7,9 @@ public interface IAnimal {
 
     public String getNameAnimal();
     public int getAgeAnimal();
+
+    void setAreaAnimalClass(String areaAnimalClass);
+
     public String getNameAnimalClass();
     public String getAreaAnimalClass();
 

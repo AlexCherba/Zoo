@@ -17,14 +17,17 @@ public abstract class AbstractAnimal implements IAnimal {
         this.nameAnimalClass = nameAnimalClass;
     }
 
+    @Override
     public void setAreaAnimalClass(String areaAnimalClass) {
         this.areaAnimalClass = areaAnimalClass;
     }
 
+    @Override
     public String getNameAnimalClass() {
         return nameAnimalClass;
     }
 
+    @Override
     public String getAreaAnimalClass() {
         return areaAnimalClass;
     }
