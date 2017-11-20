@@ -2,6 +2,7 @@ package com.level;
 
 import com.level.animal.Cat;
 import com.level.animal.Dog;
+import com.level.exception.AgeException;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -25,9 +26,24 @@ public class Zoo {
         animalZooList.add(new Dog());
         animalZooList.add(new Cat());
     }
+    public static boolean checkAge(int age, int minAge, int maxAge){
+        try {
+            if (minAge > age || age > maxAge) {
+                throw new AgeException("Error Age (" + age + ")!!! Check animal's age in file zoo.txt");
+            }
+        }
+        catch (AgeException e){
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
 
     public void createZooFromFile(String[] stringFromFileArray) {
         String[] strArray;
+        int currentAge;
+        int minAge;
+        int maxAge;
 
         for (int i = 0; i < stringFromFileArray.length; i++) {
             // The first element is Name Zoo
@@ -37,10 +53,15 @@ public class Zoo {
             }
             // Split Строки животного по сепаратору
             strArray = StringUtils.splitBySeparator(stringFromFileArray[i], ",");
+            currentAge = Integer.parseInt(strArray[2]);
             //create animals from file array
             switch (strArray[0]) {
                 case "Кот":
-                    animalZooList.add(new Cat(strArray[0], strArray[1], Integer.parseInt(strArray[2]), strArray[3]));
+                    minAge = Cat.getMinAge();
+                    maxAge = Cat.getMaxAge();
+                    if (checkAge(currentAge, minAge, maxAge)) {
+                        animalZooList.add(new Cat(strArray[0], strArray[1], Integer.parseInt(strArray[2]), strArray[3]));
+                    }
                     break;
                 case "Собака":
                     break;
