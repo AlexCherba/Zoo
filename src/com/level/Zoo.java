@@ -4,6 +4,7 @@ import com.level.animal.Cat;
 import com.level.animal.Dog;
 import com.level.exception.AgeException;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ public class Zoo {
     private String nameZoo;
     private int maxAnimalZoo;
 
-    public Zoo(String[] stringFromFileArray) {
+    public Zoo(String[] stringFromFileArray) throws FileNotFoundException {
         createZooFromFile(stringFromFileArray);
     }
 
@@ -26,7 +27,7 @@ public class Zoo {
         animalZooList.add(new Dog());
         animalZooList.add(new Cat());
     }
-    public static boolean checkAge(int age, int minAge, int maxAge){
+    public static boolean checkAge(int age, int minAge, int maxAge) throws FileNotFoundException {
         try {
             if (minAge > age || age > maxAge) {
                 throw new AgeException("Error Age (" + age + ")!!! Check animal's age in file zoo.txt");
@@ -39,7 +40,7 @@ public class Zoo {
         return true;
     }
 
-    public void createZooFromFile(String[] stringFromFileArray) {
+    public void createZooFromFile(String[] stringFromFileArray) throws FileNotFoundException {
         String[] strArray;
         int currentAge;
         int minAge;

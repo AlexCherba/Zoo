@@ -1,7 +1,12 @@
 package com.level.exception;
 
-public class AgeException extends Exception{
-    public AgeException(String message) {
-        super(message);
+import com.level.FileUtils;
+
+import java.io.FileNotFoundException;
+
+public class AgeException extends Exception {
+    public AgeException(String message) throws FileNotFoundException {
+//        super(message);
+        FileUtils.update("error.txt", message);
     }
 }

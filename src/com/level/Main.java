@@ -7,7 +7,13 @@ import java.util.Scanner;
 
 public class Main {
     static boolean exitFromCreator = false;
+    static String fileNameZoo = "zoo.txt";
+
     static Zoo zoo;
+
+    public static String getFileNameZoo() {
+        return fileNameZoo;
+    }
     public static void main(String[] args) throws FileNotFoundException {
 
 //  View menu from select file or generate random Zoo
@@ -18,7 +24,6 @@ public class Main {
         while (true){
             switch (scanner01.nextInt()) {
                 case 1:
-                    String fileNameZoo = "zoo.txt";
                     zoo = new Zoo(FileUtils.read(fileNameZoo));
                     break;
                 case 2:
