@@ -1,9 +1,9 @@
 package com.level;
 
-public class StringUtils {
-    public String[] splitBySeparator(String str, String separator){
-        //String str = "3:45:87:888:9";
-        //separator = ":";
+public abstract class StringUtils {
+    public static String[] splitBySeparator(String str, String separator) {
+        //Кот,Васька,15,Карпаты";
+        //separator = ",";
         return str.split(separator);
     }
 }

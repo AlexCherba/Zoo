@@ -1,8 +1,9 @@
 package com.level;
 
 import java.io.*;
+import java.util.ArrayList;
 
-public class FileUtils {
+public abstract class FileUtils {
 
     public static void write(String fileName, String textToFile){
         //Определяем файл
@@ -34,9 +35,10 @@ public class FileUtils {
             throw new FileNotFoundException(file.getName());
         }
     }
-    public static String read(String fileName) throws FileNotFoundException {
+    public static String[] read(String fileName) throws FileNotFoundException {
         //Этот спец. объект для построения строки
         StringBuilder sb = new StringBuilder();
+        ArrayList stringFromFileList = new ArrayList();
 
         exists(fileName);
 
@@ -48,8 +50,7 @@ public class FileUtils {
                 //В цикле построчно считываем файл
                 String s;
                 while ((s = in.readLine()) != null) {
-                    sb.append(s);
-                    sb.append("\n");
+                    stringFromFileList.add(s);
                 }
             } finally {
                 //Также не забываем закрыть файл
@@ -58,10 +59,13 @@ public class FileUtils {
         } catch(IOException e) {
             throw new RuntimeException(e);
         }
-
-        //Возвращаем полученный текст с файла
-        sb.append("test test test 3 times");
-        sb.append("nu nu nu 3 times");
-        return sb.toString();
+        //Преобразуем ArrayList в массив текстовых файловых строк
+        String[] str = new String[stringFromFileList.size()];
+        for (int i = 0; i < str.length; i++) {
+            str[i] = (String) stringFromFileList.get(i);
+            //System.out.println(str[i]);
+        }
+        //Возвращаем полученный массив строк из файла
+        return str;
     }
 }

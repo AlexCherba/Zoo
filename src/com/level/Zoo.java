@@ -9,9 +9,13 @@ import java.util.Scanner;
 public class Zoo {
 
     private ArrayList animalZooList = new ArrayList();
+
     private String nameZoo;
     private int maxAnimalZoo;
 
+    public Zoo(String[] stringFromFileArray) {
+        createZooFromFile(stringFromFileArray);
+    }
 
     public Zoo(String nameZoo) {
         this.nameZoo = nameZoo;
@@ -20,6 +24,42 @@ public class Zoo {
         animalZooList.add(new Dog());
         animalZooList.add(new Dog());
         animalZooList.add(new Cat());
+    }
+
+    public void createZooFromFile(String[] stringFromFileArray) {
+        String[] strArray;
+
+        for (int i = 0; i < stringFromFileArray.length; i++) {
+            // The first element is Name Zoo
+            if (i == 0) {
+                this.nameZoo = stringFromFileArray[i];
+                continue;
+            }
+            // Split Строки животного по сепаратору
+            strArray = StringUtils.splitBySeparator(stringFromFileArray[i], ",");
+            //create animals from file array
+            switch (strArray[0]) {
+                case "Кот":
+                    animalZooList.add(new Cat(strArray[0], strArray[1], Integer.parseInt(strArray[2]), strArray[3]));
+                    break;
+                case "Собака":
+                    break;
+                case "Лошадь":
+                    break;
+                case "Слон":
+                    break;
+                case "Крокодил":
+                    break;
+                default:
+                    System.out.println("Нет в базе такого животного!");
+                    break;
+            }
+        }
+
+    }
+
+    public void setAnimalZooList(ArrayList animalZooList) {
+        this.animalZooList = animalZooList;
     }
 
     public ArrayList getAnimalZooList() {

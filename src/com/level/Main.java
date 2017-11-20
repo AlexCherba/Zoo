@@ -7,31 +7,32 @@ import java.util.Scanner;
 
 public class Main {
     static boolean exitFromCreator = false;
-
+    static Zoo zoo;
     public static void main(String[] args) throws FileNotFoundException {
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите имя зоопарка");
-        Zoo zoo = new Zoo(scanner.nextLine());
-
-        //zoo.printAnimalZooList();
-        //System.out.println("");
+//  View menu from select file or generate random Zoo
+        Scanner scanner01 = new Scanner(System.in);
 
         Menu.selectZoo();
+
         while (true){
-            switch (scanner.nextInt()) {
+            switch (scanner01.nextInt()) {
                 case 1:
                     String fileNameZoo = "zoo.txt";
-                    System.out.println(FileUtils.read(fileNameZoo));
-                    return;
+                    zoo = new Zoo(FileUtils.read(fileNameZoo));
+                    break;
                 case 2:
-
+                    System.out.println("Введите имя зоопарка");
+                    Scanner scanner02 = new Scanner(System.in);
+                    zoo = new Zoo(scanner02.nextLine());
                     //zoo.addAnimalToZoo();
                     break;
                 default:
                     System.out.println("Не катит, 1 или 2 плиз!");
                     break;
             }
+            zoo.printAnimalZooList();
+            break;
         }
     }
 }
