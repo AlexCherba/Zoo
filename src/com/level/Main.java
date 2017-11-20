@@ -8,26 +8,30 @@ import java.util.Scanner;
 public class Main {
     static boolean exitFromCreator = false;
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите имя зоопарка");
         Zoo zoo = new Zoo(scanner.nextLine());
 
-        zoo.printAnimalZooList();
-        System.out.println("");
-        // display the array list
-        System.out.println("Contents of al: " + zoo.animalZooList);
+        //zoo.printAnimalZooList();
+        //System.out.println("");
 
-        System.out.println("");
+        Menu.selectZoo();
+        while (true){
+            switch (scanner.nextInt()) {
+                case 1:
+                    String fileNameZoo = "zoo.txt";
+                    System.out.println(FileUtils.read(fileNameZoo));
+                    return;
+                case 2:
 
-        while (!exitFromCreator){
-            zoo.addAnimalToZoo();
+                    //zoo.addAnimalToZoo();
+                    break;
+                default:
+                    System.out.println("Не катит, 1 или 2 плиз!");
+                    break;
+            }
         }
-        String textToFileZoo = "This new text \nThis new text2\nThis new text3\nThis new text4\n";
-        String fileNameZoo = "zoo.txt";
-
-        FileUtils.write(fileNameZoo, textToFileZoo);
-
     }
 }

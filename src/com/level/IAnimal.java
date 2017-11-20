@@ -5,8 +5,8 @@ public interface IAnimal {
     public String say();
     public String goToToilet();
 
-    public String getNameAnimal();
-    public int getAgeAnimal();
+    public String getName();
+    public int getAge();
 
     void setAreaAnimalClass(String areaAnimalClass);
 

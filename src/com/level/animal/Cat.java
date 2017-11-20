@@ -4,39 +4,48 @@ import com.level.AbstractAnimal;
 
 public class Cat extends AbstractAnimal {
 
-    private String nameAnimal;
-    private int ageAnimal;
-    private int minAgeAnimal = 1;
-    private int maxAgeAnimal = 18;
-    private int randomAge = minAgeAnimal + (int) (Math.random() * (maxAgeAnimal + 1));
+    private String name;
+    private int age;
+    private static final int minAge = 0;
+    private static final int maxAge = 18;
 
     public Cat() {
-        super.setAreaAnimalClass("Карпаты");
-        super.setNameAnimalClass("Кот");
-        setNameAnimal("Васька");
-        setAgeAnimal(randomAge);
+        this("Кот", "Васька", getRandomAge(minAge, maxAge), "Карпаты");
     }
 
-    public Cat(String name, int age) {
-        this();
-        setNameAnimal(name);                                    // Назначение собственного имя животного
-        setAgeAnimal(age);                                      // Назначение возраста животного
+    public Cat(String nameClass, String name, int age, String areaClass) {
+        super.setNameAnimalClass(nameClass);
+        this.name = name;
+        this.age = checkAge(age);
+        super.setAreaAnimalClass(areaClass);
     }
 
-    public String getNameAnimal() {
-        return nameAnimal;
+    public static int checkAge(int age) {
+        if (age < minAge && age > maxAge) {
+            return getRandomAge(minAge, maxAge);
+        }
+        return age;
     }
 
-    public int getAgeAnimal() {
-        return ageAnimal;
+    public static int getRandomAge(int minAge, int maxAge) {
+        return minAge + (int) (Math.random() * (maxAge + 1));
     }
 
-    public void setNameAnimal(String nameAnimal) {
-        this.nameAnimal = nameAnimal;
+
+    public String getName() {
+        return name;
     }
 
-    public void setAgeAnimal(int ageAnimal) {
-        this.ageAnimal = ageAnimal;
+    public int getAge() {
+        return age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
 }

@@ -8,13 +8,7 @@ import java.util.Scanner;
 
 public class Zoo {
 
-    public final static String[] WELCOME_CHANGE_ZOO = {
-            "Желаете ли увеличить зоопарк?",
-            "1. Да",
-            "2. Нет"
-    };
-
-    public ArrayList animalZooList = new ArrayList();
+    private ArrayList animalZooList = new ArrayList();
     private String nameZoo;
     private int maxAnimalZoo;
 
@@ -26,6 +20,10 @@ public class Zoo {
         animalZooList.add(new Dog());
         animalZooList.add(new Dog());
         animalZooList.add(new Cat());
+    }
+
+    public ArrayList getAnimalZooList() {
+        return animalZooList;
     }
 
     public void setNameZoo(String nameZoo) {
@@ -40,27 +38,23 @@ public class Zoo {
         System.out.println("В зоопарке " + nameZoo + " находятся " + animalZooList.size() + " животных. А именно:");
         for (int i = 0; i < animalZooList.size(); i++) {
             IAnimal animalZoo = (IAnimal) animalZooList.get(i);
-            System.out.println(animalZoo.getNameAnimalClass() + " " + animalZoo.getNameAnimal() + " " + animalZoo.getAgeAnimal() + " год(а) из "
+            System.out.println(animalZoo.getNameAnimalClass() + " " + animalZoo.getName() + " " + animalZoo.getAge() + " год(а) из "
                     + animalZoo.getAreaAnimalClass());
         }
     }
 
+/*
     public void addAnimalToZoo() {
-
-        for (String i : WELCOME_CHANGE_ZOO) {
-            System.out.println(i);
+        System.out.println("Доступные классы животных:");
+        for (int i = 0 ; i < animalZooList.size(); i++) {
+            IAnimal animalZoo = (IAnimal) animalZooList.get(i);
+            System.out.println(i+1 + "." + animalZoo.getNameAnimalClass());
         }
+        System.out.println("Выберите класс животного:");
         Scanner scanner = new Scanner(System.in);
-
-        switch (scanner.nextInt()) {
-            case 1:
-                Main.exitFromCreator = false;
-                break;
-            default:
-                Main.exitFromCreator = true;
-                break;
-        }
+        int classNewAnimal = scanner.nextInt();
 
     }
+*/
 
 }

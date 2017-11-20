@@ -23,11 +23,11 @@ public class Dog extends AbstractAnimal {
         setAgeAnimal(age);                                      // Назначение возраста животного
     }
 
-    public String getNameAnimal() {
+    public String getName() {
         return nameAnimal;
     }
 
-    public int getAgeAnimal() {
+    public int getAge() {
         return ageAnimal;
     }
 

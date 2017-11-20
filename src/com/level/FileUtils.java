@@ -60,6 +60,8 @@ public class FileUtils {
         }
 
         //Возвращаем полученный текст с файла
+        sb.append("test test test 3 times");
+        sb.append("nu nu nu 3 times");
         return sb.toString();
     }
 }
