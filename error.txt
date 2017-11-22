@@ -1,1 +1,8 @@
-nullError Age (35)!!! Check animal's age in file zoo.txt
+Error Age (35)!!! Check animal's age in file zoo.txt
+Error Age (25)!!! Check animal's age in file zoo.txt
+Error Age (35)!!! Check animal's age in file zoo.txt
+Error Age (25)!!! Check animal's age in file zoo.txt
+Error Age (35)!!! Check animal's age in file zoo.txt
+Error Age (25)!!! Check animal's age in file zoo.txt
+Error Age (35)!!! Check animal's age in file zoo.txt
+Error Age (25)!!! Check animal's age in file zoo.txt

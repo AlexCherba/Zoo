@@ -34,7 +34,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("Не катит, 1 или 2 плиз!");
-                    break;
+                    continue;
             }
             zoo.printAnimalZooList();
             break;

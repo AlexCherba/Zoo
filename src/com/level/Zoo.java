@@ -15,7 +15,7 @@ public class Zoo {
     private String nameZoo;
     private int maxAnimalZoo;
 
-    public Zoo(String[] stringFromFileArray) throws FileNotFoundException {
+    public Zoo(ArrayList<String> stringFromFileArray) throws FileNotFoundException {
         createZooFromFile(stringFromFileArray);
     }
 
@@ -40,20 +40,20 @@ public class Zoo {
         return true;
     }
 
-    public void createZooFromFile(String[] stringFromFileArray) throws FileNotFoundException {
+    public void createZooFromFile(ArrayList<String> stringFromFileArray) throws FileNotFoundException {
         String[] strArray;
         int currentAge;
         int minAge;
         int maxAge;
 
-        for (int i = 0; i < stringFromFileArray.length; i++) {
+        for (int i = 0; i < stringFromFileArray.size(); i++) {
             // The first element is Name Zoo
             if (i == 0) {
-                this.nameZoo = stringFromFileArray[i];
+                this.nameZoo = stringFromFileArray.get(i);
                 continue;
             }
             // Split Строки животного по сепаратору
-            strArray = StringUtils.splitBySeparator(stringFromFileArray[i], ",");
+            strArray = StringUtils.splitBySeparator(stringFromFileArray.get(i), ",");
             currentAge = Integer.parseInt(strArray[2]);
             //create animals from file array
             switch (strArray[0]) {

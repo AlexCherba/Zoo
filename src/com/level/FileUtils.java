@@ -29,7 +29,7 @@ public abstract class FileUtils {
         }
     }
 
-    public static void update(String fileName, String newText) throws FileNotFoundException {
+    public static void update(String fileName, String newText) {
         exists(fileName);
         StringBuilder sb = new StringBuilder();
         String oldFile = convertToString(read(fileName));
@@ -38,17 +38,50 @@ public abstract class FileUtils {
         write(fileName, sb.toString());
     }
 
-    private static void exists(String fileName) throws FileNotFoundException {
+    private static void exists(String fileName) {
         File file = new File(fileName);
         if (!file.exists()) {
-            throw new FileNotFoundException(file.getName());
+            //throw new FileNotFoundException(file.getName());
         }
     }
 
-    public static String[] read(String fileName) throws FileNotFoundException {
+    /*
+        public static String[] read(String fileName) {
+            //Этот спец. объект для построения строки
+            StringBuilder sb = new StringBuilder();
+            ArrayList<String> stringFromFileList = new ArrayList<>();
+
+            exists(fileName);
+
+            File file = new File(fileName);
+            try {
+                //Объект для чтения файла в буфер
+                BufferedReader in = new BufferedReader(new FileReader(file.getAbsoluteFile()));
+                try {
+                    //В цикле построчно считываем файл
+                    String s;
+                    while ((s = in.readLine()) != null) {
+                        stringFromFileList.add(s);
+                    }
+                } finally {
+                    //Также не забываем закрыть файл
+                    in.close();
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            //Преобразуем ArrayList в массив текстовых файловых строк
+            String[] str = stringFromFileList.toArray(new String[stringFromFileList.size()]);
+
+            //Возвращаем получ`енный массив строк из файла
+            //return sb.toString();;
+            return str;
+        }
+    */
+    public static ArrayList<String> read(String fileName) {
         //Этот спец. объект для построения строки
         StringBuilder sb = new StringBuilder();
-        ArrayList stringFromFileList = new ArrayList();
+        ArrayList<String> stringFromFileList = new ArrayList<>();
 
         exists(fileName);
 
@@ -69,21 +102,25 @@ public abstract class FileUtils {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //Преобразуем ArrayList в массив текстовых файловых строк
-        String[] str = new String[stringFromFileList.size()];
-        for (int i = 0; i < str.length; i++) {
-            str[i] = (String) stringFromFileList.get(i);
-            //System.out.println(str[i]);
-        }
-        //Возвращаем получ`енный массив строк из файла
-        //return sb.toString();;
-        return str;
+        return stringFromFileList;
     }
 
     public static String convertToString(String[] textArray) {
-        String str = null;
+        String str = "";
         for (String s : textArray) {
-            str.concat(s);
+            //str += s + "\n";
+            str = str.concat(s);
+            str = str.concat("\n");
+        }
+        return str;
+    }
+
+    public static String convertToString(ArrayList<String> textArray) {
+        String str = "";
+        for (String s : textArray) {
+            //str += s + "\n";
+            str = str.concat(s);
+            str = str.concat("\n");
         }
         return str;
     }
